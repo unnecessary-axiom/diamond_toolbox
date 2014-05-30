@@ -124,7 +124,7 @@
 							return;
 						}
 						$('body > .sounds').remove();
-						$("<embed src='sounds/coin.mp3' hidden='true' autostart='true' loop='false' class='sounds'/>").appendTo('body');
+						$("<embed src='" + path + "' hidden='true' autostart='true' loop='false' class='sounds'/>").appendTo('body');
 					};
 				}else{
 					game.playSound = function(){};
