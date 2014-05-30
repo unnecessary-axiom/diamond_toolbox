@@ -75,6 +75,38 @@
 
 	// inputs in the config tab
 	var menu_items = {
+		'Add gem abort': {
+			type: 'checkbox',
+			checked: 'checked',
+			change: function(){
+				if(this.checked){
+					$('<input>', {
+						type: 'button',
+						id: 'gem-abort',
+						value: 'Abort',
+						click: function(){ game.stopGemCrushing(); },
+					}).insertBefore('#gem-crusher-activate');
+				}else{
+					$('#gem-abort').remove();
+				}
+			},
+		},
+		'Add furnace abort': {
+			type: 'checkbox',
+			checked: 'checked',
+			change: function(){
+				if(this.checked){
+					$('<input>', {
+						type: 'button',
+						id: 'furnace-abort',
+						value: 'Abort',
+						click: function(){ game.stopSmelting(); },
+					}).insertBefore('#furnace-activate');
+				}else{
+					$('#furnace-abort').remove();
+				}
+			},
+		},
 		'Show inventory value': {
 			type: 'checkbox',
 			checked: 'checked',
