@@ -4,7 +4,11 @@
 	// settings and resources
 	var target_version = 1064149606;
 	var loaded_version = null;
-	var work_interval = 1000;
+	var work_interval = 1 * 1000; // 1 second
+	var update_interval = 5 * 60 * 1000; // 5 minutes
+
+	var update_interval_registration;
+
 	var resources = {
 		'ore': [
 			'Wood',
@@ -76,14 +80,16 @@
 
 	// inputs in the config tab
 	var menu_items = {
-		'Diamond Hunt Update Checker': {
+		'Diamond Hunt update checker': {
 			type: 'checkbox',
 			checked: 'checked',
 			change: function(){
 				if(this.checked){
-					work_queue.update = work_functions.update;
+					update_interval_registration = window.setInterval(function(){
+						work_functions.update();
+					}, update_interval);
 				}else{
-					delete work_queue.update;
+					window.clearInterval(update_interval_registration);
 					$('.ds-update').remove();
 				}
 			},
@@ -275,7 +281,7 @@
 		$('#dsSettings-tab input').change();
 
 		// start doing jobs
-		window.ds_work_interval = window.setInterval(do_work, work_interval);
+		window.setInterval(do_work, work_interval);
 	};
 
 
@@ -321,6 +327,8 @@
 			// get the latest version
 			get_version().done(function(current_version){
 				//compare versions
+				console.log("current: " + current_version);
+				console.log("loaded: " + loaded_version);
 				if(current_version !== loaded_version){
 					// insert a notification
 					$('<div>', {
@@ -330,6 +338,7 @@
 							window.location.reload();
 						},
 						style: "background-color:99EEFF; color:red; padding:5px; position:fixed; left:0; right:0; top: 0; height: 30px; ",
+						class: 'ds-update',
 					})
 					.prependTo('body');
 					// move everything down to fit
