@@ -263,7 +263,7 @@
 				$('<td>')
 				.append($('<input>', item_properties))
 			);
-			row.appendTo($('.table-dssettings'));
+			row.appendTo($('.table-dsSettings'));
 		});
 		//
 		// override tab functions so mine works
@@ -325,6 +325,7 @@
 		},
 		'update': function(){
 			// get the latest version
+			console.log("Update check...");
 			get_version().done(function(current_version){
 				//compare versions
 				console.log("current: " + current_version);
@@ -346,6 +347,9 @@
 					//remove myself from updating
 					delete work_queue.update;
 				}
+			})
+			.fail(function(){
+				console.log("Failed to fetch update hash");
 			});
 		},
 	};
