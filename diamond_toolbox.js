@@ -145,7 +145,7 @@
 				}
 			},
 		},
-		'Log Ticks (DS debug)': {
+		'Log Ticks (DT debug)': {
 			type: 'checkbox',
 			change: function(){
 				if(this.checked){
@@ -173,7 +173,7 @@
 	// version checking
 	var init = function(){
 		if($('#dsSettings-tab').length > 0){
-			alert('Please reload the page before applying DS again');
+			alert('Please reload the page before applying DT again');
 			return;
 		}
 
@@ -232,9 +232,9 @@
 		$('<td/>', {
 			id: 'table-tab',
 			class: 'activate-tooltip dsSettings-button',
-			tooltip: 'Diamond Scope Settings',
+			tooltip: 'Diamond Toolbox Settings',
 			onClick: 'openTab("dsSettings")',
-			html: '<img src=\'data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"> <path d="M462,280.72v-49.44l-46.414-16.48c-3.903-15.098-9.922-29.343-17.675-42.447l0.063-0.064l21.168-44.473l-34.96-34.96 l-44.471,21.167l-0.064,0.064c-13.104-7.753-27.352-13.772-42.447-17.673L280.72,50h-49.44L214.8,96.415 c-15.096,3.9-29.343,9.919-42.447,17.675l-0.064-0.066l-44.473-21.167l-34.96,34.96l21.167,44.473l0.066,0.064 c-7.755,13.104-13.774,27.352-17.675,42.447L50,231.28v49.44l46.415,16.48c3.9,15.096,9.921,29.343,17.675,42.447l-0.066,0.064 l-21.167,44.471l34.96,34.96l44.473-21.168l0.064-0.063c13.104,7.753,27.352,13.771,42.447,17.675L231.28,462h49.44l16.48-46.414 c15.096-3.903,29.343-9.922,42.447-17.675l0.064,0.063l44.471,21.168l34.96-34.96l-21.168-44.471l-0.063-0.064 c7.753-13.104,13.771-27.352,17.675-42.447L462,280.72z M256,338.4c-45.509,0-82.4-36.892-82.4-82.4c0-45.509,36.891-82.4,82.4-82.4 c45.509,0,82.4,36.891,82.4,82.4C338.4,301.509,301.509,338.4,256,338.4z"/></svg>\' style="vertical-align: text-bottom;" alt="icon" height="30px" width="30px">',
+			html: '<img src=\'data:image/svg+xml;utf8,<?xml version="1.0" encoding="utf-8"?> <!-- http://uxrepo.com/icon-sets/all/5 --> <!-- Generator: IcoMoon.io --> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M 30,10l-8,0 c0,1.104-0.896,2-2,2l 10,0 l0,4 l-10,0 c 1.104,0, 2,0.896, 2,2l 8,0 l0,12 L 2,30 L 2,18 l 8,0 c0-1.104, 0.896-2, 2-2L 2,16 L 2,12 l 10,0 C 10.896,12, 10,11.104, 10,10L 2,10 C 0.896,10,0,10.896,0,12l0,4 l0,2 l0,12 c0,1.104, 0.896,2, 2,2l 28,0 c 1.104,0, 2-0.896, 2-2L 32,18 L 32,16 L 32,12 C 32,10.896, 31.104,10, 30,10zM 12,12l 8,0 c 1.104,0, 2-0.896, 2-2L 22,8 c0-1.104-0.896-2-2-2L 12,6 C 10.896,6, 10,6.896, 10,8l0,2 C 10,11.104, 10.896,12, 12,12z M 12,8l 8,0 l0,2 L 12,10 L 12,8 zM 10,18l0,2 c0,1.104, 0.896,2, 2,2l 8,0 c 1.104,0, 2-0.896, 2-2L 22,18 c0-1.104-0.896-2-2-2L 12,16 C 10.896,16, 10,16.896, 10,18z M 20,20L 12,20 L 12,18 l 8,0 L 20,20 z"></path></g></svg>\' style="vertical-align: text-bottom;" alt="icon" height="30px" width="30px">',
 		}).insertAfter($('.tab-container tr #table-tab').last());
 
 		// create settings tab table
