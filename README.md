@@ -3,6 +3,9 @@ diamond_toolbox
 
 Enhancements bookmarklet for http://diamondhunt.co
 
-To use, drag this link to your toolbar, or just bookmark it:
+To use, create a bookmark in your browser with the following target:
 
-[Diamond Toolbox](javascript:(function(){if(document.domain!=='diamondhunt.co'){alert('This bookmarklet must be run on the Diamond Hunt website.');return;}document.body.appendChild(document.createElement('script')).src='https://raw.githubusercontent.com/unnecessary-axiom/diamond_toolbox/master/diamond_toolbox.js';})();)
+    javascript:(function(){if(document.domain!=='diamondhunt.co'){alert('This bookmarklet must be run on the Diamond Hunt website.');return;}document.body.appendChild(document.createElement('script')).src='https://raw.githubusercontent.com/unnecessary-axiom/diamond_toolbox/master/diamond_toolbox.js';})();
+
+
+Then just use the bookmark when you're in the game.
