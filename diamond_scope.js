@@ -2,7 +2,8 @@
 	'use strict';
 
 	// settings and resources
-	var target_version = -1407974026;
+	var target_version = 1064149606;
+	var loaded_version = null;
 	var work_interval = 1000;
 	var resources = {
 		'ore': [
@@ -75,37 +76,18 @@
 
 	// inputs in the config tab
 	var menu_items = {
-		'Add gem abort': {
+		'Diamond Hunt Update Checker': {
 			type: 'checkbox',
 			checked: 'checked',
 			change: function(){
 				if(this.checked){
-					$('<input>', {
-						type: 'button',
-						id: 'gem-abort',
-						value: 'Abort',
-						click: function(){ game.stopGemCrushing(); },
-					}).insertBefore('#gem-crusher-activate');
+					work_queue.update = work_functions.update;
 				}else{
-					$('#gem-abort').remove();
+					delete work_queue.update;
+					$('.ds-update').remove();
 				}
 			},
-		},
-		'Add furnace abort': {
-			type: 'checkbox',
-			checked: 'checked',
-			change: function(){
-				if(this.checked){
-					$('<input>', {
-						type: 'button',
-						id: 'furnace-abort',
-						value: 'Abort',
-						click: function(){ game.stopSmelting(); },
-					}).insertBefore('#furnace-activate');
-				}else{
-					$('#furnace-abort').remove();
-				}
-			},
+
 		},
 		'Show inventory value': {
 			type: 'checkbox',
@@ -175,6 +157,19 @@
 		},
 	};
 
+	// return a promise that gets the version hash
+	var get_version = function(){
+		var dfd = $.Deferred();
+		$.get('updatelog.txt')
+		.done(function(data){
+			dfd.resolve(hash_string(data));
+		})
+		.fail(function(){
+			dfd.reject();
+		});
+		return dfd.promise();
+	};
+	
 	// version checking
 	var init = function(){
 		if($('#dsSettings-tab').length > 0){
@@ -182,9 +177,8 @@
 			return;
 		}
 
-		$.get('updatelog.txt')
-		.done(function(data){
-			var current_version = hash_string(data);
+		get_version()
+		.done(function(current_version){
 			console.log('Current: ' + current_version);
 			console.log('Target: ' + target_version);
 			if(current_version === target_version){
@@ -194,13 +188,14 @@
 					add_menu();
 				}
 			}
+			loaded_version = current_version;
 		})
 		.fail(function(){
 			alert('Failed to fetch updatelog.txt to check for compatable version');
 		});
 
 	};
-	
+
 	var override = function(target_function, new_function){
 		game['origional_' + target_function.name] = target_function;
 		game[target_function.name] = new_function;
@@ -320,6 +315,28 @@
 
 			Object.keys(totals).forEach(function(resource_type){
 				$('.ds-total-' + resource_type).text(game.numberFormatter(totals[resource_type]));
+			});
+		},
+		'update': function(){
+			// get the latest version
+			get_version().done(function(current_version){
+				//compare versions
+				if(current_version !== loaded_version){
+					// insert a notification
+					$('<div>', {
+						text: 'A new version is available. Click to save and refresh',
+						click: function(){
+							localSave();
+							window.location.reload();
+						},
+						style: "background-color:99EEFF; color:red; padding:5px; position:fixed; left:0; right:0; top: 0; height: 30px; ",
+					})
+					.prependTo('body');
+					// move everything down to fit
+					$('#main-game, .top-menu, #giant-rock-area').css('margin-top', '30px');
+					//remove myself from updating
+					delete work_queue.update;
+				}
 			});
 		},
 	};
