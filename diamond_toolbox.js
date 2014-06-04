@@ -107,7 +107,7 @@
 				}
 			},
 		},
-		'Hide crafted item': {
+		'Hide crafted items': {
 			type: 'checkbox',
 			checked: 'checked',
 			change: function(){
