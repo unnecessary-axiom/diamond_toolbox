@@ -95,6 +95,18 @@
 			},
 
 		},
+		'Show oil usage': {
+			type: 'checkbox',
+			checked: 'checked',
+			change: function(){
+				if(this.checked){
+					work_queue.oil_stats = work_functions.oil_stats;
+				}else{
+					delete work_queue.oil_stats;
+					$('.ds-oil').remove();
+				}
+			},
+		},
 		'Show inventory value': {
 			type: 'checkbox',
 			checked: 'checked',
@@ -322,6 +334,27 @@
 			Object.keys(totals).forEach(function(resource_type){
 				$('.ds-total-' + resource_type).text(game.numberFormatter(totals[resource_type]));
 			});
+		},
+		'oil_stats': function(){
+			var using = 0;
+			// I don't want to read from the HTML, but I also don't want to have to re-implement formulas
+			// so this should work well for most things
+			var generating = parseFloat($('#oil-gaining').text());
+			$("[id^=oil-losing]").each(function(i, e){
+				var amount = parseFloat($(e).text());
+				if(!isNaN(amount)){
+					using += amount;
+				}
+			});
+			using = using*-1;
+			var delta = (generating - using).toFixed(2);
+			if($('.ds-oil').length < 1){
+				$('<div>', {
+					class: 'ds-oil',
+					style: 'color:white; text-align:center;',
+				}).insertBefore('#key-inventory-space');
+			}
+			$('.ds-oil').html('Generating: ' + game.numberFormatter(generating) + '<br/>Using: ' + game.numberFormatter(using) + '<br/>Profit: ' + game.numberFormatter(delta));
 		},
 		'update': function(){
 			// get the latest version

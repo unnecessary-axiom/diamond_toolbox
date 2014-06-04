@@ -16,5 +16,6 @@ Features
 * Checks for Diamond Hunt updates
 * Can show current value of inventory per category
 * Hides already crafted and purchased items
+* Shows combined rates of oil
 * Able to reenable shop sounds
 * Control panel for enable/disable of features
