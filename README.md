@@ -9,3 +9,12 @@ To use, create a bookmark in your browser with the following target:
 
 
 Then just use the bookmark when you're in the game.
+
+Features
+--------
+
+* Checks for Diamond Hunt updates
+* Can show current value of inventory per category
+* Hides already crafted and purchased items
+* Able to reenable shop sounds
+* Control panel for enable/disable of features
