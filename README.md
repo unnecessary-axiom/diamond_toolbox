@@ -6,7 +6,7 @@ Updated for DiamondHunt Jun 10.
 Use
 ---
 
-Install the script by follinwg the instructions here: https://unnecessary-axiom.github.io/diamond_toolbox/
+Install the script by following the instructions here: https://unnecessary-axiom.github.io/diamond_toolbox/
 
 When the script it run the default featureset will be enabled and a new config tab will appear.
 
