@@ -1,18 +1,42 @@
 diamond_toolbox
 ===============
 
-Enhancements bookmarklet for http://diamondhunt.co
+Updated for DiamondHunt Jun 10.
 
-To use, create a bookmark in your browser with the following target:
+Use
+---
 
-    javascript:(function(){if(document.domain!=='diamondhunt.co'){alert('This bookmarklet must be run on the Diamond Hunt website.');return;}document.body.appendChild(document.createElement('script')).src='https://raw.githubusercontent.com/unnecessary-axiom/diamond_toolbox/master/diamond_toolbox.js';})();
-
-
-Then just use the bookmark when you're in the game.
+Install the script by follinwg the instructions here: https://unnecessary-axiom.github.io/diamond_toolbox/
+When the script it run, the default featureset will be enabled. Which features  are enabled can be changed on the tab that was added.
 
 Features
 --------
 
+* Checks for Diamond Hunt updates
+* Can show current value of inventory per category
+* Hides already crafted and purchased items
+* Shows combined rates of oil
+* Able to reenable shop sounds
+* Control panel for enable/disable of features
+
+
+Future
+------
+
+* Saving feature states
+* Shift-click sell
+* Individual item total value
+
+
+
+Changelog
+---------
+
+### Version 1.0
+
+#### New Features
+
+* First release
 * Checks for Diamond Hunt updates
 * Can show current value of inventory per category
 * Hides already crafted and purchased items

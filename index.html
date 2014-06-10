@@ -1,13 +1,42 @@
 <!doctype html>
-
 <html lang="en">
-<head>
-  <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
+		<title>Diamond Toolbox</title>
+		<style>
+			body {
+				width: 750px;
+				margin: 0 auto;
+			}
 
-  <title>Diamond Toolbox</title>
-  
-</head>
-<body>
-  <h2>Hello, world!</h2>
-</body>
+			h3 {
+				margin-top: 2em;
+			}
+
+			pre { 
+				background-color: #F7F7F9;
+				border: 1px solid #E1E1E8;
+				padding: 9px 14px;
+				word-wrap: break-word;
+				white-space: pre-line;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>How to install Diamond Toolbox Add-On for DiamondHunt</h2>
+
+		<h3>As a bookmarklet</h3>
+		<ol>
+			<li>
+				Paste the following code into the URL section of a new bookmark, and name it "Diamond Toolbox"
+				<pre>javascript:(function(){if(document.domain!=='diamondhunt.co'){alert('This bookmarklet must be run on the Diamond Hunt website.');return;}document.body.appendChild(document.createElement('script')).src='https://unnecessary-axiom.github.io/diamond_toolbox/diamond_toolbox.js';})();</pre>
+			</li>
+			<li>Run the bookmark when DiamondHunt is loaded</li>
+			<li>A Diamond Toolbox now loads on the page and addds it's control tab</li>
+		</ol>
+		<h3>Other methods</h3>
+		<ul>
+			<li>The bookmarket is the only method available at this time. A userscript is possible in the future, a browser extension is not likely.</li>
+		</ul>
+	</body>
 </html>
