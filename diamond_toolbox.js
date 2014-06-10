@@ -2,7 +2,7 @@
 	'use strict';
 
 	// settings and resources
-	var target_version = -1906701441;
+	var target_version = -1102485390;
 	var loaded_version = null;
 	var work_interval = 1 * 1000; // 1 second
 	var update_interval = 5 * 60 * 1000; // 5 minutes
