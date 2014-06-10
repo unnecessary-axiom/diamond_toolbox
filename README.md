@@ -7,7 +7,8 @@ Use
 ---
 
 Install the script by follinwg the instructions here: https://unnecessary-axiom.github.io/diamond_toolbox/
-When the script it run, the default featureset will be enabled. Which features  are enabled can be changed on the tab that was added.
+
+When the script it run the default featureset will be enabled and a new config tab will appear.
 
 Features
 --------
