@@ -1,7 +1,7 @@
 diamond_toolbox
 ===============
 
-Updated for DiamondHunt Jun 10.
+Updated for DiamondHunt Jun 11.
 
 Use
 ---
