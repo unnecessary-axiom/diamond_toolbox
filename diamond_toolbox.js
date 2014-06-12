@@ -7,7 +7,7 @@
 	};
 
 	// settings and resources
-	var target_version = -2065502472;
+	var target_version = -1298320310;
 	var loaded_version = null;
 	var work_interval = 1 * 1000; // 1 second
 	var update_interval = 5 * 60 * 1000; // 5 minutes
