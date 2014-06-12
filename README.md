@@ -28,8 +28,6 @@ Future
 * Shift-click sell
 * Individual item total value
 
-
-
 Changelog
 ---------
 
@@ -38,6 +36,7 @@ Changelog
 #### New Features
 
 * Tiny progress indiactor on population tab
+* Population recalc button
 
 ### Version 1.0
 

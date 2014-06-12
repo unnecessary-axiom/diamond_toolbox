@@ -85,6 +85,17 @@
 
 	// inputs in the config tab
 	var menu_items = {
+		'Recalculate population investment (use only if DT is up to date)': {
+			type: 'button',
+			value: 'Recaclulate and refresh',
+			click: function(){
+				varElectricityAmount = (75 * varWindTurbineAmount) + (5000 * varPowerPlantAmount) + (40000 * varOilPowerPlantAmount) + (5e5 * varNuclearPowerPlantAmount);
+				varWaterAmount=(100 * varSmallWaterReserveAmount) + (varLargeWaterReserveAmount * 4800);
+				varEducationLevel = (500 * varElementarySchoolAmount) + (2000 * varMiddleSchoolAmount);
+				localSave();
+				window.location.reload();
+			},
+		},
 		'Additional Population Indicators': {
 			type: 'checkbox',
 			checked: 'checked',
