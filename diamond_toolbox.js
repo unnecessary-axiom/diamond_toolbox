@@ -214,9 +214,28 @@
 
 	};
 
-	var override = function(target_function, new_function){
-		game['origional_' + target_function.name] = target_function;
-		game[target_function.name] = new_function;
+	// Overrides a function, placing the origional at origional_[target_function]
+	// Accepts:
+	//     A string containing the name of the function
+	//     A new function to call
+	var override = function(target_function, new_function, scope){
+		if(scope === undefined){
+			scope = game;
+		}
+	
+		scope['origional_' + target_function] = scope[target_function];
+		scope[target_function] = new_function;
+	};
+	
+	var unoverride = function(target_function, scope){
+		if(scope === undefined){
+			scope = game;
+		}
+
+		if(scope['origional_' + target_function] !== undefined){
+			scope[target_function] = scope['origional_' + target_function];
+			delete scope['origional_' + target_function];
+		}
 	};
 
 	var add_menu = function(){
@@ -279,11 +298,11 @@
 		});
 		//
 		// override tab functions so mine works
-		override(hideAllTabs, function(){
+		override('hideAllTabs', function(){
 			$('.tab-scroll-bars').hide();
 		});
 
-		override(openTab, function(tabName){
+		override('openTab', function(tabName){
 			// triggers loading functions and calls hideAllTabs
 			game.origional_openTab(tabName);
 			$('#' + tabName + '-tab').show();
