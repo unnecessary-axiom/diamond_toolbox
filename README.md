@@ -14,6 +14,8 @@ Features
 --------
 
 * Checks for Diamond Hunt updates
+* Tiny progress indiactor on population tab
+* Button to recalculate population progress, to fix DH bug
 * Can show current value of inventory per category
 * Hides already crafted and purchased items
 * Shows combined rates of oil
