@@ -1,8 +1,13 @@
 (function($, window, game){
 	'use strict';
 
+	// oh no extends!
+	String.prototype.capitalize = function() {
+		return this.charAt(0).toUpperCase() + this.slice(1);
+	};
+
 	// settings and resources
-	var target_version = 1418297464;
+	var target_version = -28420982;
 	var loaded_version = null;
 	var work_interval = 1 * 1000; // 1 second
 	var update_interval = 5 * 60 * 1000; // 5 minutes
@@ -80,6 +85,33 @@
 
 	// inputs in the config tab
 	var menu_items = {
+		'Additional Population Indicators': {
+			type: 'checkbox',
+			checked: 'checked',
+			change: function(){
+				if(this.checked){
+					// add new indicators
+					$('<div>', {
+						class: 'ds-pop',
+						style: 'color: white;',
+					}).prependTo('#population-tab-inside');
+					// add and override to update my indicators
+					override('initPopulation', function(ammount){
+						game.origional_initPopulation(ammount);
+						var content = '';
+						['electricity', 'water', 'education'].forEach(function(indicator, i){
+							content += indicator.capitalize() + ': ' + $('#progress-percentage-' + indicator)[0].style.width + ', ' + $('#' + indicator + '-status').text() + '<br/>';
+						});
+						$('.ds-pop').html(content);
+					});
+				}else{
+					// remove indicators
+					$('.ds-pop').remove();
+					// remove overrides
+					unoverride('initPopulation');
+				}
+			},
+		},
 		'Diamond Hunt update checker': {
 			type: 'checkbox',
 			checked: 'checked',

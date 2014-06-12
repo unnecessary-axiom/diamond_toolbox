@@ -1,7 +1,7 @@
 diamond_toolbox
 ===============
 
-Updated for DiamondHunt Jun 11.
+Updated for DiamondHunt Jun 12.
 
 Use
 ---
@@ -32,6 +32,12 @@ Future
 
 Changelog
 ---------
+
+### Version 1.1
+
+#### New Features
+
+* Tiny progress indiactor on population tab
 
 ### Version 1.0
 
