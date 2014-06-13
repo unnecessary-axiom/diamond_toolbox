@@ -15,7 +15,7 @@ Features
 
 * Checks for Diamond Hunt updates
 * Furnace status indicator in titlebar
-* Tiny progress indiactor on population tab
+* Option to always show common stats
 * Button to recalculate population progress, to fix DH bug
 * Can show current value of inventory per category
 * Hides already crafted and purchased items
@@ -33,6 +33,12 @@ Future
 
 Changelog
 ---------
+
+### Version 1.3
+
+#### New Features
+
+* chnaged tiny pop indicators to common stat box
 
 ### Version 1.2
 

@@ -15,6 +15,7 @@
 	// saved for replacing the titlebar for smelting
 	var backup_title = ''; 
 
+	// variable to store the setInterval handle for the update checker
 	var update_interval_registration;
 
 	var resources = {
@@ -99,30 +100,20 @@
 				window.location.reload();
 			},
 		},
-		'Additional Population Indicators': {
+		'Always visible measurements': {
 			type: 'checkbox',
 			checked: 'checked',
 			change: function(){
 				if(this.checked){
-					// add new indicators
 					$('<div>', {
-						class: 'ds-pop',
-						style: 'color: white;',
-					}).prependTo('#population-tab-inside');
-					// add and override to update my indicators
-					override('initPopulation', function(ammount){
-						game.origional_initPopulation(ammount);
-						var content = '';
-						['electricity', 'water', 'education'].forEach(function(indicator, i){
-							content += indicator.capitalize() + ': ' + $('#progress-percentage-' + indicator)[0].style.width + ', ' + $('#' + indicator + '-status').text() + '<br/>';
-						});
-						$('.ds-pop').html(content);
-					});
+						'class': 'dt-hud',
+						'style': 'margin-left:300px; margin-bottom:10px; color:white;',
+					}).insertBefore('#tab-container');
+					work_queue.hud = work_functions.hud;
 				}else{
 					// remove indicators
-					$('.ds-pop').remove();
-					// remove overrides
-					unoverride('initPopulation');
+					$('.dt-hud').remove();
+					delete work_queue.hud;
 				}
 			},
 		},
@@ -135,7 +126,7 @@
 					work_queue.furnace_title = work_functions.furnace_title;
 				}else{
 					delete work_queue.furnace_title;
-					 window.document.title = backup_title;
+					window.document.title = backup_title;
 				}
 			},
 		},
@@ -381,6 +372,23 @@
 	var work_functions = {
 		'log': function(){
 			console.log((new Date()), arguments);
+		},
+		'hud': function(){
+			var content = '';
+
+			content += 'Coins: ' + game.numberFormatter(game.varCoinsAmount) + ' - Oil: ' + game.numberFormatter(game.varOilAmount) + ' - ';
+
+			['electricity', 'water', 'education'].forEach(function(indicator, i){
+				content += indicator.capitalize() + ': ' + $('#progress-percentage-' + indicator)[0].style.width + ' (' + $('#' + indicator + '-status').text() + ') - ';
+			});
+
+
+			['oil', 'smelting', 'woodcutting', 'clicker', 'charming', 'bar'].forEach(function(potion, i){
+				if(game[potion + 'PotionActivated']){
+					content += potion.capitalize() + ' potion: ' + game[potion + 'PotionActivated'] + ' - ';
+				}
+			});
+			$('.dt-hud').html(content);
 		},
 		'inventory_value': function(){
 			var totals = {
