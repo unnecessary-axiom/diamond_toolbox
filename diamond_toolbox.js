@@ -1,7 +1,7 @@
 (function($, window, game){
 	'use strict';
 
-	// oh no extends!
+	// oh no, extends!
 	String.prototype.capitalize = function() {
 		return this.charAt(0).toUpperCase() + this.slice(1);
 	};
@@ -276,6 +276,7 @@
 	// Accepts:
 	//     A string containing the name of the function
 	//     A new function to call
+	// Optionally accepts a scope
 	var override = function(target_function, new_function, scope){
 		if(scope === undefined){
 			scope = game;
@@ -285,6 +286,9 @@
 		scope[target_function] = new_function;
 	};
 	
+	// reverts an overide to the origional function
+	// Accepts the function name as a string,
+	// Optionally accepts a scope
 	var unoverride = function(target_function, scope){
 		if(scope === undefined){
 			scope = game;
