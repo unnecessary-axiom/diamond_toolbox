@@ -14,6 +14,7 @@ Features
 --------
 
 * Checks for Diamond Hunt updates
+* Furnace status indicator in titlebar
 * Tiny progress indiactor on population tab
 * Button to recalculate population progress, to fix DH bug
 * Can show current value of inventory per category
@@ -32,6 +33,12 @@ Future
 
 Changelog
 ---------
+
+### Version 1.2
+
+#### New Features
+
+* Furnace status indicator in titlebar
 
 ### Version 1.1
 

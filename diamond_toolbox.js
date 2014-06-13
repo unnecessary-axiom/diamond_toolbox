@@ -11,6 +11,9 @@
 	var loaded_version = null;
 	var work_interval = 1 * 1000; // 1 second
 	var update_interval = 5 * 60 * 1000; // 5 minutes
+	
+	// saved for replacing the titlebar for smelting
+	var backup_title = ''; 
 
 	var update_interval_registration;
 
@@ -123,6 +126,19 @@
 				}
 			},
 		},
+		'Furnace status in titlebar': {
+			type: 'checkbox',
+			checked: 'checked',
+			change: function(){
+				if(this.checked){
+					backup_title = window.document.title;
+					work_queue.furnace_title = work_functions.furnace_title;
+				}else{
+					delete work_queue.furnace_title;
+					 window.document.title = backup_title;
+				}
+			},
+		},
 		'Diamond Hunt update checker': {
 			type: 'checkbox',
 			checked: 'checked',
@@ -136,7 +152,6 @@
 					$('.ds-update').remove();
 				}
 			},
-
 		},
 		'Show oil usage': {
 			type: 'checkbox',
@@ -396,6 +411,13 @@
 			Object.keys(totals).forEach(function(resource_type){
 				$('.ds-total-' + resource_type).text(game.numberFormatter(totals[resource_type]));
 			});
+		},
+		'furnace_title': function(){
+			if(! $('#furnace-active:visible').length){
+				window.document.title = backup_title;
+				return;
+			}
+			window.document.title = $('#furnace-ores-to-smelt, #furnace-ores-smelted').text() + ' - ' + backup_title;
 		},
 		'oil_stats': function(){
 			var using = 0;
